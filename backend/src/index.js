@@ -8,6 +8,7 @@ const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const userRoutes = require("./routes/users");
+const authRoutes = require("./routes/auth");
 const connectDB=async()=>{
     try{
         await mongoose.connect(process.env.MONGOURL)
@@ -32,6 +33,7 @@ app.use(cors());
 
 
 app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
 
 app.listen(PORT,()=>{
     connectDB();

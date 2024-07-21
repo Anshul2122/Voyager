@@ -40,7 +40,7 @@ router.post("/register", [
         res.status(200).json({ message: "user register successfully" });
     } catch (error) {
         console.log(error);
-        res.status(500).send({ message: "something went wrong" });
+        return res.status(500).send({ message: "something went wrong" });
     }
 })
 
