@@ -31,6 +31,11 @@ app.use(express.json());
 // makes secure connections of backend and frontend server 
 app.use(cors());
 
+app.use((req, res, next) => {
+    console.log(req.url);
+    console.log(req.body);
+    next();
+});
 
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
