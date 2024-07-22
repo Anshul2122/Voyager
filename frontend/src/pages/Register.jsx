@@ -4,16 +4,21 @@ import * as apiClient from "../api-client";
 // import Typography from '@mui/material/Typography';
 // import Box from '@mui/material/Box';
 // import TextField from '@mui/material/TextField';
-import { Link } from "react-router-dom"
+import { useNavigate , Link} from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { useAppContext } from '../context/AppContext';
 const Register = () => {
+
+    const { showToast } = useAppContext();
+    const navigate = useNavigate();
 
     const mutation = useMutation(apiClient.register, {
         onSuccess: () => {
-            console.log("registration successful!");
+            showToast({ message: "Registration Success!", type: "SUCCESS" });
+            navigate('/');
         },
         onError: (error) => {
-            console.log(error.message);
+            showToast({ message: error.message, type: "ERROR" });
         }
     });
 
@@ -44,21 +49,21 @@ const Register = () => {
             </div>
             <label className='text-gray-700 text-sm font-bold flex flex-col '>
                 Email
-                <input type='email' className='border rounded w-1/3 py-1 px-4 font-normal'
+                <input type='email' className='border rounded w-5/12 py-1 px-4 font-normal'
                     {...register("email", { required: "please enter the email" })}
                 ></input>
                 {errors.email && ( <span className='text-red-500'>{errors.email.message}</span>)}
             </label>
             <label className='text-gray-700 text-sm font-bold flex flex-col'>
                 Password
-                <input type='password' className='border rounded w-1/3 py-1 px-2 font-normal'
+                <input type='password' className='border rounded w-5/12 py-1 px-2 font-normal'
                     {...register("password", { required: "please enter password",  minLength:{value:6} })}
                 ></input>
                 {errors.password && ( <span className='text-red-500'>{errors.password.message}</span>)}
             </label>
             <label className='text-gray-700 text-sm font-bold flex flex-col'>
                 Confirm  Password
-                <input type='password' className='border rounded w-1/3 py-1 px-2 font-normal'
+                <input type='password' className='border rounded w-5/12 py-1 px-2 font-normal'
                     {...register("confirmPassword", {
                         validate: (val) => {
                         if (!val) {
