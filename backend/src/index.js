@@ -4,11 +4,14 @@ dotenv.config();
 
 
 const express = require('express');
-const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
+const cookieParser = require("cookie-parser");
+
+const app = express();
+app.use(cookieParser());
 const connectDB=async()=>{
     try{
         await mongoose.connect(process.env.MONGOURL)
@@ -29,7 +32,10 @@ const PORT = process.env.PORT || 8080;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // makes secure connections of backend and frontend server 
-app.use(cors());
+app.use(cors({
+    origin: process.env.FRONTEND_URL,
+    credentials:true,
+}));
 
 app.use((req, res, next) => {
     console.log(req.url);

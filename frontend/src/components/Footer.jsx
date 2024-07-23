@@ -8,8 +8,9 @@ const Footer = () => {
                   MernHoliday.com
               </span>
               <span className='text-white font-bold tracking-tight flex gap-4'>
-                  <p className='cursor-pointer'>privacy policy</p>
-                  <p className='cursor-pointer'>Terms of service</p>
+                  <p> © 2024 MernHoliday,Inc</p>
+                  <p className='cursor-pointer hover:underline'>privacy policy</p>
+                  <p className='cursor-pointer hover:underline'>Terms of service</p>
               </span>
           </div>
     </div>

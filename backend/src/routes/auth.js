@@ -4,6 +4,7 @@ const { check, validationResult } = require("express-validator");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+const verifyToken = require("../middleware/auth");
 
 
 router.post("/login", [
@@ -52,5 +53,9 @@ router.post("/logout", (req, res) => {
     });
     res.send();
 });
+
+router.get("/validate-token", verifyToken, (req, res) => {
+    res.status(200).send({ userId: req.userId });
+})
 
 module.exports = router;
