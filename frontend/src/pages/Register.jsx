@@ -15,7 +15,7 @@ const Register = () => {
     const mutation = useMutation(apiClient.register, {
         onSuccess: () => {
             showToast({ message: "Registration Success!", type: "SUCCESS" });
-            navigate('/');
+            navigate('/sign-in');
         },
         onError: (error) => {
             showToast({ message: error.message, type: "ERROR" });
@@ -28,7 +28,7 @@ const Register = () => {
     });
 
     return (
-      
+      <>
         <form className='flex flex-col gap-5' onSubmit={onSubmit}>
             <h2 className='text-3xl font-bold'>Create an Account</h2>
             <div className='flex flex-col md:flex-row gap-5'>
@@ -78,8 +78,9 @@ const Register = () => {
             </label>
 
             <button type='submit' className='text-white bg-blue-500 hover:text-blue-500 hover:bg-blue-200 w-60 rounded-3xl py-2 border-blue-500 text-xl'>Create account</button>
-            
         </form>
+            <div className='m-1 px-1 text-gray-500 '>Already registerd? <span className='text-blue-400 hover:underline'><Link to="/login">sign in</Link></span></div>
+            </>
     // <Box
     //   component="form"
     //   sx={{
