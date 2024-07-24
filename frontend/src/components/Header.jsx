@@ -15,6 +15,7 @@ const Header = () => {
                 <span className='flex space-x-2 text-white'>
                     {isLoggedIn ? (
                         <>
+                            
                             <Link
                                 to="/my-bookings"
                                 className='  flex items-center  px-3 font-bold hover:bg-white hover:text-blue-500 rounded-3xl'
@@ -27,21 +28,14 @@ const Header = () => {
                         </>
                     ) : (
                             <>
-                                {location.pathname === '/register' ? (
-                                    <>
                                     <Link
                                     to="/sign-in"
                                     className='  flex items-center  px-3 font-bold hover:bg-white hover:text-blue-500 rounded-3xl'
                                     >Sign-in</Link>
-                                    </>
-                                ) : (
-                                    <>
                                     <Link
                                     to="/register"
                                     className='  flex items-center  px-3 font-bold hover:bg-white hover:text-blue-500 rounded-3xl'
                                     >Register</Link>
-                                    </>
-                                )} 
                             </>
                     )}
                 </span>

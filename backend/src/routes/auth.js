@@ -7,6 +7,8 @@ const User = require('../models/user');
 const verifyToken = require("../middleware/auth");
 
 
+
+
 router.post("/login", [
     check("email", "email is required").isEmail(),
     check("password", "password with 6 or more characters").isLength({ min: 6 }),

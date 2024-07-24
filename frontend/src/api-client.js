@@ -35,7 +35,7 @@ export const signIn = async (formData) => {
 };
 
 
-export const validateToken = async (token) => {
+export const validateToken = async () => {
      const res = await fetch(`${API_BASE_URL}/api/auth/validate-token`, {
         credentials: "include",
     });

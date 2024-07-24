@@ -79,7 +79,7 @@ const Register = () => {
 
             <button type='submit' className='text-white bg-blue-500 hover:text-blue-500 hover:bg-blue-200 w-60 rounded-3xl py-2 border-blue-500 text-xl'>Create account</button>
         </form>
-            <div className='m-1 px-1 text-gray-500 '>Already registerd? <span className='text-blue-400 hover:underline'><Link to="/login">sign in</Link></span></div>
+            <div className='m-1 px-1 text-gray-500 '>Already registerd? <span className='text-blue-400 hover:underline'><Link to="/sign-in">sign in</Link></span></div>
             </>
     // <Box
     //   component="form"

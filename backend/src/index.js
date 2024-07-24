@@ -43,6 +43,18 @@ app.use((req, res, next) => {
     next();
 });
 
+const checkAuth = (req, res, next) => {
+    const isAuthenticated = verifyToken(req.cookies.token);
+    if (isAuthenticated) {
+        next();
+    }
+    else { 
+        res.render('/sign-in');
+    }
+}
+
+app.get('/', checkAuth);
+
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 
