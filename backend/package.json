@@ -5,7 +5,7 @@
   "main": "./src/index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "build": "npm install",
+    "build": "npm install && npm rebuild bcrypt --build-from-source",
     "start": "node src/index.js"
   },
   "author": "",
