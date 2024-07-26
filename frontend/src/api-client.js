@@ -1,9 +1,10 @@
 // for fetch request
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+console.log(API_BASE_URL);
 
 export const register = async (formData) => {
-    const res = await fetch(`${API_BASE_URL}/api/users/register`, {
+    const res = await fetch(`${API_BASE_URL}api/users/register`, {
         method: 'POST',
         credentials:"include",
         headers: {
