@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
 const cookieParser = require("cookie-parser");
+const path = require('path')
 
 const app = express();
 app.use(cookieParser());
@@ -48,12 +49,14 @@ app.use((req, res, next) => {
 //     if (isAuthenticated) {
 //         next();
 //     }
-//     else { 
+//     else {
 //         res.render('/sign-in');
 //     }
 // }
 
 // app.get('/', checkAuth);
+
+app.use(express.static(path.join(__dirname, '../../frontend/dist')));
 
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
