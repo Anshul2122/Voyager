@@ -5,7 +5,7 @@ import SignOutButton from "./SignOutButton";
 
 const Header = () => {
     const { isLoggedIn } = useAppContext();
-    const location = useLocation();
+
     return (
         <div className='bg-blue-500 py-6'>
             <div className='container mx-auto flex justify-between'>
@@ -13,7 +13,7 @@ const Header = () => {
                     <Link to="/">MernHoliday.com</Link>
                 </span>
                 <span className='flex space-x-2 text-white'>
-                    {isLoggedIn ? (
+                    {isLoggedIn && (
                         <>
                             
                             <Link
@@ -26,7 +26,7 @@ const Header = () => {
                             >My hotels</Link>
                             <SignOutButton/>
                         </>
-                    ) : (
+                    ) || (
                             <>
                                     <Link
                                     to="/sign-in"

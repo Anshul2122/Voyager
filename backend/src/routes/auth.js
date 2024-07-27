@@ -43,8 +43,9 @@ router.post("/login", [
     }
 });
 
+router.use(verifyToken)
 
-router.post("/logout", (req, res) => {
+router.get("/logout", (req, res) => {
     res.cookie("auth_token", "", {
         expires: new Date(0)
     });
