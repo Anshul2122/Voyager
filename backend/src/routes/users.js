@@ -1,9 +1,9 @@
 const express = require('express');
-const router = express.Router();
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const { check, validationResult} = require("express-validator");
 
+const router = express.Router();
 
 // api/users/register
 
@@ -26,7 +26,6 @@ router.post("/register", [
         if (user) {
             return res.status(400).json({ message: "User already exists" });
         }
-
         // Create and save new user
         user = new User(req.body);
         await user.save();

@@ -21,7 +21,8 @@ export const AppContextProvider = ({ children }) => {
     });
 
     return (
-        <AppContext.Provider value={{
+        <AppContext.Provider
+            value={{
             showToast:(toastMessage) => {
                 setToast(toastMessage);
             },

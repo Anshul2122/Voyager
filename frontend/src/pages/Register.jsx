@@ -1,28 +1,30 @@
-import React from 'react'
-import { useMutation } from "react-query";
-import * as apiClient from "../api-client";
-// import Typography from '@mui/material/Typography';
-// import Box from '@mui/material/Box';
-// import TextField from '@mui/material/TextField';
-import { useNavigate , Link} from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { useMutation, useQueryClient } from "react-query";
+import * as apiClient from "../api-client";
 import { useAppContext } from '../context/AppContext';
+import { useNavigate , Link} from 'react-router-dom';
+
+
 const Register = () => {
 
-    const { showToast } = useAppContext();
+    const queryClient = useQueryClient();
     const navigate = useNavigate();
+    const { showToast } = useAppContext();
+
+    const { register, watch, handleSubmit, formState:{errors} } = useForm();
 
     const mutation = useMutation(apiClient.register, {
-        onSuccess: () => {
+        onSuccess:  async() => {
             showToast({ message: "Registration Success!", type: "SUCCESS" });
+            await queryClient.invalidateQueries("validateToekn");
             navigate('/sign-in');
         },
         onError: (error) => {
             showToast({ message: error.message, type: "ERROR" });
-        }
+        },
     });
 
-    const { register, watch, handleSubmit, formState:{errors} } = useForm();
+    
     const onSubmit = handleSubmit((data) => {
         mutation.mutate(data);
     });

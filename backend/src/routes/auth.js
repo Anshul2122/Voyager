@@ -1,12 +1,10 @@
 const express = require('express');
-const router = express.Router();
 const { check, validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const verifyToken = require("../middleware/auth");
-
-
+const router = express.Router();
 
 
 router.post("/login", [
@@ -50,7 +48,7 @@ router.post("/logout", (req, res) => {
     res.cookie("auth_token", "", {
         expires: new Date(0)
     });
-    res.send();
+    res.sendStatus(200);
 });
 
 router.get("/validate-token", verifyToken, (req, res) => {

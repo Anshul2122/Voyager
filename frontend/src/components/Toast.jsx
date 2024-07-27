@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 const Toast = ({ message, type, onClose }) => {
     useEffect(() => {
         const timer = setTimeout(() => {
-            window.location.reload();
             onClose();
         }, 3 * 1000);// 3 seconds
         return () => {
@@ -13,8 +12,8 @@ const Toast = ({ message, type, onClose }) => {
 
     const styles =
         type === "SUCCESS"
-            ? "fixed top-4 right-4 z-50 p-4 rounded-md bg-green-600 text-white max-w-100"
-            : "fixed top-4 right-4 z-50 rounded-md bg-red-600 text-white max-w-100";
+            ? "fixed top-4 right-4 z-50 p-4 rounded-md bg-green-600 text-white max-w-md"
+            : "fixed top-4 right-4 z-50 rounded-md bg-red-600 text-white max-w-md";
     return (
         <div className={styles}>
             <div className='flex justify-center items-center'>

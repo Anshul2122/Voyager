@@ -1,7 +1,5 @@
-
 const dotenv = require('dotenv');
 dotenv.config();
-
 
 const express = require('express');
 const cors = require('cors');
@@ -9,10 +7,9 @@ const mongoose = require('mongoose');
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
 const cookieParser = require("cookie-parser");
-const path = require('path')
+const verifyToken = require("./middleware/auth")
 
 const app = express();
-app.use(cookieParser());
 const connectDB=async()=>{
     try{
         await mongoose.connect(process.env.MONGOURL)
@@ -25,6 +22,8 @@ const connectDB=async()=>{
 }
 
 const PORT = process.env.PORT || 8080;
+
+app.use(cookieParser());
 //In an Express.js application,
 // the app.use(express.urlencoded({ extended: true })); 
 //middleware is used to parse incoming requests with URL - encoded payloads.
@@ -44,22 +43,26 @@ app.use((req, res, next) => {
     next();
 });
 
-// const checkAuth = (req, res, next) => {
-//     const isAuthenticated = verifyToken(req.cookies.token);
-//     if (isAuthenticated) {
-//         next();
-//     }
-//     else {
-//         res.render('/sign-in');
-//     }
-// }
+const checkAuth = (req, res, next) => {
+    const isAuthenticated = verifyToken(req.cookies.token);
+    if (isAuthenticated) {
+        next();
+    }
+    else {
+        res.redirect('/sign-in');
+    }
+}
 
-// app.get('/', checkAuth);
+app.get('/', checkAuth);
 
-app.use(express.static(path.join(__dirname, '../../frontend/dist')));
+//  app.use(express.static(path.join(__dirname, '../../frontend/dist')));
 
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
+
+
+
+
 
 app.listen(PORT,()=>{
     connectDB();
