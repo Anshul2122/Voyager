@@ -9,7 +9,7 @@ const verifyToken = require("../middleware/auth");
 
 
 
-router.post("login", [
+router.post("/login", [
     check("email", "email is required").isEmail(),
     check("password", "password with 6 or more characters").isLength({ min: 6 }),
 ], async (req, res) => {
@@ -45,18 +45,15 @@ router.post("login", [
     }
 });
 
-// router.get("/validate-token", verifyToken, (req, res) => {
-//     res.status(200).send({ userId: req.userId });
-// });
 
-router.post("logout", (req, res) => {
+router.post("/logout", (req, res) => {
     res.cookie("auth_token", "", {
         expires: new Date(0)
     });
     res.send();
 });
 
-router.get("validate-token", verifyToken, (req, res) => {
+router.get("/validate-token", verifyToken, (req, res) => {
     res.status(200).send({ userId: req.userId });
 })
 
