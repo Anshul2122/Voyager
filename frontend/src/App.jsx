@@ -22,7 +22,6 @@ function App() {
     }
     return children;
   };
-//https://api.render.com/deploy/srv-cqh7416ehbks73a5kqsg?key=4FNhGv4KL60
   return (
     <Router>
       <Routes>
